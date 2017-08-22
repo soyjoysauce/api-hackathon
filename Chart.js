@@ -35,6 +35,19 @@ function Chart(){
         }));
     }
 
+    console.log(google);
+    console.log(google.visualization);
+
+    //
+    google.visualization.events.addListener(chart, 'select', function() {
+        var selectedItem = chart.getSelection()[0];
+        if (selectedItem) {
+          var country = data.getValue(selectedItem.row, 0);
+          if (country = 'France') { alert ('ciao') };
+        }
+    
+      });
+
     
 }
 
