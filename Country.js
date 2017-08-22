@@ -1,11 +1,11 @@
 
 /*example
-var c = new Country("china");
+    //@param is ISO-3166 format 
+var c = new Country("US"); 
 */
-//if we can got country code from the map, then we can search data with codes instead of search with names
 
-
-function Country(name){
+function Country(code){
+    this.code = "";
     this.name = "";
     this.nativeName = "";
     this.flag = "";
@@ -17,14 +17,14 @@ function Country(name){
     this.area = "";
     this.currencies = [];
 
-    this.getData = function(name){
+    this.getData = function(code){
         var option = {
-            url: "https://restcountries.eu/rest/v2/name/"+name+"?fullText=true",
+            url: ("https://restcountries.eu/rest/v2/alpha/"+ code),
             method: "get",
             dataType: "json",
             success: function(response){
                 console.log("get country data success => ", response);
-                assignData(response[0]);
+                assignData(response);
             },
             error: function(response){
                 console.log("get country data error");
@@ -34,7 +34,7 @@ function Country(name){
     }
     var self = this;
     function assignData(countryData){
-        console.log("contryData name", countryData.name);
+        self.code = countryData.alpha2Code;
         self.name = countryData.name;
         self.nativeName = countryData.nativeName;
         self.flag = countryData.flag;
@@ -57,5 +57,5 @@ function Country(name){
         }
     }
 
-    this.getData(name);
+    this.getData(code);
 }

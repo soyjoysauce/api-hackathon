@@ -3,6 +3,9 @@
  * @constructor
  */
 function Manager(){
+
+    this.defaultCountryCode = "US";
+
     /**
      * property - hold current select country data
      */
@@ -27,7 +30,8 @@ function Manager(){
      * method - init the manager, fill all property
      */
     this.init = function(){
-        this.currentCountry = new Country("us")
+        this.setCurrentCountry(this.defaultCountryCode);
+        this.chartManager = new Chart(this.defaultCountryCode);
     }
 
     /**
@@ -42,7 +46,13 @@ function Manager(){
      * method - show data, call function inside view manager
      */
 
-    
+    /**
+     * method - set current country data
+     * @param countryCode ISO-3166 format 
+     */
+    this.setCurrentCountry = function(countryCode){
+        this.currentCountry = new Country(countryCode);
+    }
 
     this.init();
 }
