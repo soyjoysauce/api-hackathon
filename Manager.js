@@ -2,7 +2,7 @@
  * Handle all things, because it's manager!
  * @constructor
  */
-function Manager(){
+// function Manager(){
 /**
  * property - hold current select country data
  */
@@ -19,6 +19,12 @@ function Manager(){
  * property - hold the view manager
  */
 //this is where Soy works on handing the view manager
+    //triggered by: manager
+    //input: youtube api/GoogleMap-geo chart api/ Data(restcountries)api
+    //output: layout of info_page.html
+    // function viewManager(){
+    //
+    // }
 
 /**
  * method - init the manager, fill all property
@@ -36,4 +42,4 @@ function Manager(){
  * method - show data, call function inside view manager
  */
 
-}
+// }
