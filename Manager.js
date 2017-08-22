@@ -18,7 +18,7 @@ function Manager(){
 /**
  * property - hold the view manager
  */
-
+//this is where Soy works on handing the view manager
 
 /**
  * method - init the manager, fill all property
