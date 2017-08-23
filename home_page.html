@@ -31,7 +31,6 @@ function displayVideoAndMap() {
         $("#regions_div").removeClass("regions_div");
         $("#regions_div").addClass("transformed_div");
         $("#info_button").remove();
-        $("#map_button_container").append('<button type="button" class="btn btn-default btn-lg"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>Fullscreen</button>');
 
     }
 }
@@ -43,12 +42,16 @@ function displayVideoAndMap() {
             border: 1px solid;
             text-align: center;
             font-size: 50px;
+            color: #282827;
             font-family: Arial, sans-serif;
-            background-color: #3f7f7f;
+            background-color: #00C990;
+            border-radius: 25px;
+            padding-top:10px;
+            margin-top: -65px;
         }
 
         body{
-            background-color: #049E7F;
+            background-color: #282827;
             width:100vw;
             height:1000px;
         }
@@ -64,7 +67,6 @@ function displayVideoAndMap() {
         .info_container {
             width: 100vw;
             height: 803px;
-            border: 3px solid green;
             text-align: center;
             display: inline-block;
         }
@@ -75,10 +77,11 @@ function displayVideoAndMap() {
             height: 500px;
             border: 1px solid;
             text-align: center;
-            transform: translate(0%, 25%);
+            /*transform: translate(0%, 25%);*/
             display: inline-block;
-            background-color: #f8f8f8;
+            background-color: #91D2F7;
             float: none;
+            border-radius: 50px;
         }
 
         #country_api_container {
@@ -92,11 +95,14 @@ function displayVideoAndMap() {
             border:1px solid;
             display: inline-block;
             float: right;
-            background-color: red;
+            background-color: #F26A68;
         }
 
         #map_button_container{
             display: inline-block;
+            width: 900px;
+            height: 500px;
+            transform: translate(0%, 25%);
             /*float: left;*/
         }
 
@@ -104,19 +110,21 @@ function displayVideoAndMap() {
             float: right;
             width:700px ;
             height: 300px;
+            background-color: #91D2F7;
         }
+
 
         .transformed_div {
             transform: translate(-1%, 0%);
-            /*width: 100vw;*/
-            /*height: 500px;*/
-            /*display: inline-block;*/
+            width: 900px;
+            height: 500px;
+            display: inline-block;
             /*float:left;*/
             /*transition-property:width 400px, height 300px ;*/
 
         }
-        .btn-lg {
-
+        #info_button {
+            position: fixed;
         }
 
         .hide {
@@ -125,9 +133,13 @@ function displayVideoAndMap() {
 
     </style>
 </head>
-<body>
+<body background="img/reverse_globe.png">
 <div class="container-fluid website_container">
-    <header>Kid Maps - A Interactive Media Education Tool for Kids</header>
+    <header>
+        <!--<img src="compass_logo.png" height="20" width="20">-->
+        <p>Kid Maps - A Interactive Media Education Tool for Kids</p>
+        <!--<img src="compass_logo.png" height="20" width="20">    -->
+    </header>
     <!--geochart-->
     <div class="container info_container">
             <div id="map_button_container">
@@ -147,22 +159,40 @@ function displayVideoAndMap() {
             </div>
                 <!--this contains country's data and charts-->
                 <div class="data_api_container">
-                    <table class="table table-bordered county_data">
-                        <thead>
-                        <tr>
-                            <th class="col-lg-2">Name</th>
-                            <td class=" col-lg-4 country_name"></td>
-                            <th class="col-lg-2">Capital</th>
-                            <td class="col-log-4 country_capital"></td>
-                        </tr>
-                        <tr>
-                            <th class="col-lg-2">Population</th>
-                            <td class="col-lg-4 country_population"></td>
-                            <th class="col-lg-2">Currency</th>
-                            <td class="col-lg-4 country_currency"></td>
-                        </tr>
-                        </thead>
-                    </table>
+                    <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Country information
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <!--insert text here-->
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur facere itaque molestias quos? Ad aliquam at cumque deserunt error et libero nisi nulla porro similique temporibus totam vel voluptas, voluptate!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!--<table class="table table-bordered county_data">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th class="col-lg-2">Name</th>-->
+                            <!--<td class=" col-lg-4 country_name"></td>-->
+                            <!--<th class="col-lg-2">Capital</th>-->
+                            <!--<td class="col-log-4 country_capital"></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th class="col-lg-2">Population</th>-->
+                            <!--<td class="col-lg-4 country_population"></td>-->
+                            <!--<th class="col-lg-2">Currency</th>-->
+                            <!--<td class="col-lg-4 country_currency"></td>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    <!--</table>-->
                 </div>
             </div>
         </div>
