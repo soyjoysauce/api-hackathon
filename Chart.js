@@ -46,18 +46,12 @@ function Chart(defaultCountryCode, parentDom){
         google.visualization.events.addListener(chart, 'regionClick', function(response) {
             var code = manager.currentCountry.code;
             var region = response.region;
-            if(response.region === code){
+            if(region === code || !isNaN(region)){
                 return;
-            }
-
-            //should remove this, use a button to go back to world map
-            if(!isNaN(region)){
-                manager.chartManager.currentShowArea = "world";
-            }else{
+            }else {
                 setCurrentRegion(region);
                 manager.setCurrentCountry(region);
             }
-
             refreshChart();
           });
 
