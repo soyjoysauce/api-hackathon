@@ -22,7 +22,7 @@ function Video() {
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
-            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=sightseeing+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
+            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=national+geographic:+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
             //'https://s-apis.learßningfuze.com/hackathon/youtube/search.php',
             method: 'get',
             data: {
@@ -52,7 +52,6 @@ function Video() {
 
     function addVideoToDom(videoId) {
 
-
         var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
@@ -66,4 +65,5 @@ function Video() {
 
 };
 
-
+ var  videoOfCountry = new Video();
+videoOfCountry.startVideo('algeria');
