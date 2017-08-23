@@ -1,4 +1,3 @@
-
 /*example
     //@param is ISO-3166 format 
 var c = new Country("US"); 
@@ -46,6 +45,7 @@ function Country(code){
         };
         self.region = countryData.region;
         self.subregion = countryData.subregion;
+        manager.chartManager.showRegion(self.subregion);
         self.population = countryData.population;
         self.area = countryData.area;
         for(var i = 0; i < countryData.currencies.length; ++i){
