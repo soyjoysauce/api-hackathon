@@ -26,6 +26,7 @@ function Manager() {
      */
     this.viewManager = null;
 
+
     /**
      * method - init the manager, fill all property
      */
