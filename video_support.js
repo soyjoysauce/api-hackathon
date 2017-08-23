@@ -22,7 +22,7 @@ function Video() {
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
-            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=national+geographic:+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
+            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=the+country+of+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
             //'https://s-apis.learßningfuze.com/hackathon/youtube/search.php',
             method: 'get',
             data: {
@@ -39,7 +39,7 @@ function Video() {
                 //this.title = response.video[0].title;ß
 
 
-                addVideoToDom(this.id);
+               addVideoToDom(this.id);
 
 
             },
@@ -50,6 +50,9 @@ function Video() {
     };
 
 
+
+
+
     function addVideoToDom(videoId) {
 
         $("#player").empty();
@@ -57,11 +60,12 @@ function Video() {
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
 
-        iframe.attr('src', url);
+        iframe.attr('src', url).css({"margin-top": "20px", "margin-left": "5px"});
 
         $("#player").append(iframe);
+        $("#youtubeModal").modal('show');
     }
 
-};
 
+};
 
