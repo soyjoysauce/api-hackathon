@@ -11,30 +11,10 @@
 <script src="Chart.js"></script>
 <script src="Country.js"></script>
 <script src="View.js"></script>
-
 <script src="main.js"></script>
-    <script src="video_support.js"></script>
+<script src="video_support.js"></script>
 
 
-<script>
-$(document).ready(function(){
-    console.log("ready");
-    console.log($(".btn-lg"));
-    $("#info_button").on("click",displayVideoAndMap);
-});
-
-
-function displayVideoAndMap() {
-    var buttonclicked = true;
-    //if the button clicked is true reveal the country api container and transform regions div
-    if(buttonclicked === true){
-        $("#country_api_container").removeClass("hide");
-        $("#regions_div").removeClass("regions_div");
-        $("#regions_div").addClass("transformed_div");
-        $("#info_button").remove();
-    }
-}
-    </script>
     <style>
         header{
             width: 100vw;
@@ -46,8 +26,6 @@ function displayVideoAndMap() {
             font-family: Arial, sans-serif;
             background-color: #00C990;
             border-radius: 25px;
-            /*padding-top:10px;*/
-            /*margin-top: -65px;*/
         }
 
         body{
@@ -62,7 +40,6 @@ function displayVideoAndMap() {
             height:1000px;
             width:100vw;
             text-align: center;
-            /*padding: 70px 0;*/
         }
 
         .info_container {
@@ -72,39 +49,19 @@ function displayVideoAndMap() {
             display: inline-block;
         }
 
-        /*before the click the map is centered*/
         .regions_div{
             width: 900px;
             height: 500px;
             border: 1px solid;
             text-align: center;
-            /*transform: translate(0%, 25%);*/
             display: inline-block;
             background-color: #91D2F7;
             float: none;
             border-radius: 50px;
         }
 
-        #country_api_container {
-            float: right;
-            width: min-content;
-            height: min-content;
-        }
-
-        .youtube_api_container{
-            width: min-content;
-            height: min-content;
-            display: inline-block;
-            float: right;
-            background-color: #F26A68;
-        }
-
         #map_button_container{
             display: inline-block;
-            /*width: min-content;*/
-            /*height: min-content;*/
-            /*transform: translate(50%, 10%);*/
-            /*float: left;*/
         }
 
         .data_api_container {
@@ -114,27 +71,9 @@ function displayVideoAndMap() {
             background-color: #91D2F7;
         }
 
-
-        .transformed_div {
-            display: inline-block;
-            width: min-content;
-            /*height: min-content;*/
-            /*transform: translate(-45%);*/
-            /*float:left;*/
-            /*transition-property:width 400px, height 300px ;*/
-
-        }
-        #info_button {
-            /*position: fixed;*/
-        }
-
-        .hide {
-            visibility: hidden;
-        }
         #youtubeModal > .modal-dialog{
             width: min-content;
         }
-
 
     </style>
 </head>
@@ -153,7 +92,6 @@ function displayVideoAndMap() {
                 <button type="button" class=" btn btn-default btn-lg" id="expand-btn">
                     <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>World
                 </button>
-                <button type="button" id="info_button" class="btn btn-info btn-lg">Info</button>
             </div>
         </div>
     </div>
@@ -223,7 +161,7 @@ function displayVideoAndMap() {
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 
             </div>
         </div>
