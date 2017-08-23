@@ -1,15 +1,12 @@
-
 function Chart(defaultCountryCode, parentDom){
 
     var dom = null;
-    var dataTableHeader = ["Country"];
-    var dataTableContent = [];
+    var tableHeader = ["Country"];
+    var tableContent = [];
     this.currentShowArea = "world";
 
     this.init = function(){
-        dataTableContent.push(defaultCountryCode);
-
-        console.log("parent dom = ", parentDom);
+        tableContent.push(defaultCountryCode);
         dom = parentDom;
         refreshChart();
     }
@@ -22,6 +19,11 @@ function Chart(defaultCountryCode, parentDom){
         }
     }
 
+    this.showWholeWorld = function(){
+        console.log("test world button");
+        manager.chartManager.showRegion("world");
+    }
+
     function refreshChart(){
         $(dom).empty();
         google.charts.load('current', {
@@ -32,33 +34,24 @@ function Chart(defaultCountryCode, parentDom){
     }
 
     function drawRegionsMap() {
-        var dataTableArray = [];
-        dataTableArray.push(dataTableHeader);
-        dataTableArray.push(dataTableContent);
-        var data = google.visualization.arrayToDataTable(dataTableArray);
+        var tableArray = [];
+        tableArray.push(tableHeader);
+        tableArray.push(tableContent);
+        var data = google.visualization.arrayToDataTable(tableArray);
         var options = {
             region: manager.chartManager.currentShowArea
         };
         var chart = new google.visualization.GeoChart(dom);
 
         google.visualization.events.addListener(chart, 'regionClick', function(response) {
-
-            console.log(response.region);
-            setCurrentRegion(response.region);
-            console.log(manager);
-            manager.setCurrentCountry(response.region);
-
-            if(response.region === manager.currentCountry.code){
+            var code = manager.currentCountry.code;
+            var region = response.region;
+            if(region === code || !isNaN(region)){
                 return;
+            }else {
+                setCurrentRegion(region);
+                manager.setCurrentCountry(region);
             }
-            //should remove this, use a button to go back to world map
-            if(!isNaN(response.region)){
-                manager.chartManager.currentShowArea = "world";
-            }else{
-                setCurrentRegion(response.region);
-                manager.setCurrentCountry(response.region);
-            }
-
             refreshChart();
           });
 
@@ -66,55 +59,55 @@ function Chart(defaultCountryCode, parentDom){
     }
 
     function setCurrentRegion(region){
-        dataTableContent = [];
-        dataTableContent.push(region)
+        tableContent = [];
+        tableContent.push(region)
     }
+
+    function getAreaCode(subregion){
+        
+            if(subregion.includes("Africa")){
+                return "002";
+            }
+        
+            if(subregion.includes("Eastern Europe")){
+                return "151";
+            }
+        
+            if(subregion.includes("Northern Europe")){
+                return "021"
+            }
+        
+            if(subregion.includes("Europe")){
+                return "150";
+            }
+        
+            if(subregion.includes("Asia")){
+                return "142";
+            }
+        
+            switch(subregion){
+                case "Northern America":
+                    return "021";
+                case "Caribbean":
+                    return "029";
+                case "Central America":
+                    return "013";
+                case "South America":
+                    return "005";
+                case "Australia and New Zealand":
+                    return "053";
+                case "Melanesia":
+                    return "054";
+                case "Micronesia":
+                    return "057";
+                case "Polynesia":
+                    return "061";
+                default:
+                    return "world";
+            }
+        }
 
     this.init();
-
 }
 
-function getAreaCode(subregion){
 
-    if(subregion.includes("Africa")){
-        return "002";
-    }
-
-    if(subregion.includes("Eastern Europe")){
-        return "151";
-    }
-
-    if(subregion.includes("Northern Europe")){
-        return "021"
-    }
-
-    if(subregion.includes("Europe")){
-        return "150";
-    }
-
-    if(subregion.includes("Asia")){
-        return "142";
-    }
-
-    switch(subregion){
-        case "Northern America":
-            return "021";
-        case "Caribbean":
-            return "029";
-        case "Central America":
-            return "013";
-        case "South America":
-            return "005";
-        case "Australia and New Zealand":
-            return "053";
-        case "Melanesia":
-            return "054";
-        case "Micronesia":
-            return "057";
-        case "Polynesia":
-            return "061";
-        default:
-            return "world";
-    }
-    
-}
