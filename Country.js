@@ -24,6 +24,7 @@ function Country(code){
             success: function(response){
                 console.log("get country data success => ", response);
                 assignData(response);
+                manager.onCountryDataLoaded();
             },
             error: function(response){
                 console.log("get country data error");
@@ -35,6 +36,7 @@ function Country(code){
     function assignData(countryData){
         self.code = countryData.alpha2Code;
         self.name = countryData.name;
+        console.log(self.name);
         self.nativeName = countryData.nativeName;
         self.flag = countryData.flag;
         self.capital = countryData.capital;
@@ -45,7 +47,6 @@ function Country(code){
         };
         self.region = countryData.region;
         self.subregion = countryData.subregion;
-        manager.chartManager.showRegion(self.subregion);
         self.population = countryData.population;
         self.area = countryData.area;
         for(var i = 0; i < countryData.currencies.length; ++i){

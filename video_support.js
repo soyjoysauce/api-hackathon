@@ -2,9 +2,18 @@
  *
  * @param searchString
  * @constructor
+ *
+ * instantiate Video object and
+ * pass the country as a string to startVideo() method;
  */
+// example: var  videoOfCountry = new Video();
+// example: videoOfCountry.startVideo('china');
 
-
+/**
+ * obtain video from getVideo function
+ * display the video with startVideo
+ *
+ */
 function Video() {
 
     this.id = '';
@@ -13,7 +22,7 @@ function Video() {
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
-            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=sightseeing+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
+            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=national+geographic:+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
             //'https://s-apis.learßningfuze.com/hackathon/youtube/search.php',
             method: 'get',
             data: {
@@ -43,20 +52,14 @@ function Video() {
 
     function addVideoToDom(videoId) {
 
-
         var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
 
         iframe.attr('src', url);
 
-        $('#player').append(iframe);
-
-
     }
 
 };
 
 
-var  videoOfCountry = new Video();
-videoOfCountry.startVideo('russia');

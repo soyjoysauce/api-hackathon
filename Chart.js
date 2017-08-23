@@ -4,15 +4,18 @@ function Chart(defaultCountryCode, parentDom){
     var tableHeader = ["Country"];
     var tableContent = [];
     this.currentShowArea = "world";
+    var previousCountryCode = null;
 
     this.init = function(){
         tableContent.push(defaultCountryCode);
         dom = parentDom;
-        refreshChart();
     }
 
-    this.showRegion = function(areaName){
-        var targetCode = getAreaCode(areaName);
+    this.showMap = function(targetCountry){
+        var targetCode = getAreaCode(targetCountry);
+        if(previousCountryCode !== targetCountry.code){
+            refreshChart();
+        }
         if(manager.chartManager.currentShowArea !== targetCode){
             manager.chartManager.currentShowArea = targetCode;
             refreshChart();
@@ -21,7 +24,7 @@ function Chart(defaultCountryCode, parentDom){
 
     this.showWholeWorld = function(){
         console.log("test world button");
-        manager.chartManager.showRegion("world");
+        manager.chartManager.showMap("world");
     }
 
     function refreshChart(){
@@ -45,32 +48,32 @@ function Chart(defaultCountryCode, parentDom){
 
         google.visualization.events.addListener(chart, 'regionClick', function(response) {
             var code = manager.currentCountry.code;
-            var region = response.region;
-            if(response.region === code){
+            var targetCode = response.region;
+            if(targetCode === code || !isNaN(targetCode)){
                 return;
+            }else {
+                setCurrentCountry(targetCode);
             }
-
-            //should remove this, use a button to go back to world map
-            if(!isNaN(region)){
-                manager.chartManager.currentShowArea = "world";
-            }else{
-                setCurrentRegion(region);
-                manager.setCurrentCountry(region);
-            }
-
-            refreshChart();
           });
 
         chart.draw(data, options);
     }
 
-    function setCurrentRegion(region){
+    function setCurrentCountry(countryCode){
+        previousCountryCode = manager.currentCountry.code;
         tableContent = [];
-        tableContent.push(region)
+        tableContent.push(countryCode);
+        manager.setCurrentCountry(countryCode);
     }
 
-    function getAreaCode(subregion){
-        
+    function getAreaCode(targetCountry){
+        if(targetCountry.constructor !== Country){
+            return "world";
+        }
+        if(targetCountry.name === "Svalbard and Jan Mayen"){
+            return targetCountry.code;
+        }
+        var subregion = targetCountry.subregion;
             if(subregion.includes("Africa")){
                 return "002";
             }
@@ -80,7 +83,7 @@ function Chart(defaultCountryCode, parentDom){
             }
         
             if(subregion.includes("Northern Europe")){
-                return "021"
+                return "154"
             }
         
             if(subregion.includes("Europe")){
