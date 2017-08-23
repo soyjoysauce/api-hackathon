@@ -56,8 +56,11 @@ function Chart(defaultCountryCode, parentDom){
             
             var code = manager.currentCountry !== null ? manager.currentCountry.code : "";
             var targetCode = response.region;
+            if(!isNaN(targetCode)){
+                return;
+            }
             $("#youtubeModal").modal('show');
-            if(targetCode === code || !isNaN(targetCode)){
+            if(targetCode === code){
                 return;
             }else {
                 setCurrentCountry(targetCode);
