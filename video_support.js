@@ -61,5 +61,12 @@ function Video() {
     }
 
 };
+<<<<<<< HEAD
+/*
+ var  videoOfCountry = new Video();
+videoOfCountry.startVideo('algeria');
+*/
+=======
 
 
+>>>>>>> c6c08b2b79c4783944bb2f78e802a62b1bf655bd
