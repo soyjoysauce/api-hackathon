@@ -1,4 +1,4 @@
-function Chart(defaultCountryCode, parentDom){
+function Chart(parentDom){
 
     var dom = null;
     var tableHeader = ["Country"];
