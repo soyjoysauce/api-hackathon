@@ -24,11 +24,10 @@ function Video() {
             success: function (response) {
                 console.log(response.items[0].id.videoId);
                 console.log(response.items[0].snippet.title);
-                console.log(response);
-                debugger;
-                //console.log(response.video[0].title);
+
+
                 this.id = response.items[0].id.videoId;
-                //this.title = response.video[0].title;ß
+
                 addVideoToDom(this.id);
 
 
@@ -42,9 +41,9 @@ function Video() {
 
     function addVideoToDom(videoId) {
 
-        var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
+        var iframe = $('<iframe id="ytplayer" type="text/html" width="560" height="340" frameborder="0">')
 
-        var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
+        var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=0&origin=http:';
         iframe.attr('src', url);
 
         $('#player').append(iframe);
