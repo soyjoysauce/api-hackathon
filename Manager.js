@@ -10,6 +10,12 @@ function Manager() {
     this.chartManager = null;
     this.viewManager = null;
 
+
+
+    /**
+     * method - init the manager, fill all property
+     */
+
     this.init = function () {
         this.setCurrentCountry(this.defaultCountryCode);
         this.chartManager = new Chart(this.defaultCountryCode,document.getElementById("regions_div"));

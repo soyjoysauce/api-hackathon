@@ -8,6 +8,8 @@ function Chart(defaultCountryCode, parentDom){
 
     this.init = function(){
         dataTableContent.push(defaultCountryCode);
+
+        console.log("parent dom = ", parentDom);
         dom = parentDom;
         refreshChart();
     }
@@ -40,6 +42,12 @@ function Chart(defaultCountryCode, parentDom){
         var chart = new google.visualization.GeoChart(dom);
 
         google.visualization.events.addListener(chart, 'regionClick', function(response) {
+
+            console.log(response.region);
+            setCurrentRegion(response.region);
+            console.log(manager);
+            manager.setCurrentCountry(response.region);
+
             if(response.region === manager.currentCountry.code){
                 return;
             }
@@ -50,6 +58,7 @@ function Chart(defaultCountryCode, parentDom){
                 setCurrentRegion(response.region);
                 manager.setCurrentCountry(response.region);
             }
+
             refreshChart();
           });
 
@@ -62,6 +71,7 @@ function Chart(defaultCountryCode, parentDom){
     }
 
     this.init();
+
 }
 
 function getAreaCode(subregion){
