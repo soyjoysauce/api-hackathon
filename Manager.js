@@ -18,9 +18,10 @@ function Manager() {
 
     this.init = function () {
         this.setCurrentCountry(this.defaultCountryCode);
+        this.viewManager = new View();
         this.chartManager = new Chart(this.defaultCountryCode,document.getElementById("regions_div"));
         this.videoManager = new Video();
-        this.viewManager = new View();
+        
         //apply event handler
         $("#expand-btn").on("click", this.chartManager.showWholeWorld);
     }
