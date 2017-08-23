@@ -4,26 +4,32 @@
  * @constructor
  */
 
-function Video(searchString) {
-    this.videoToSearch = searchString;
+
+function Video() {
+
     this.id = '';
     this.title = '';
 
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
-            url: 'https://s-apis.learningfuze.com/hackathon/youtube/search.php',
-            method: 'post',
+            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=sightseeing+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
+            //'https://s-apis.learßningfuze.com/hackathon/youtube/search.php',
+            method: 'get',
             data: {
-                q: 'national geographic: ' +  videoToSearch,
-                maxResults: 1,
-                type: 'video'
+                maxResults: 1
             },
+
+
             success: function (response) {
-                console.log(response.video[0].id);
-                console.log(response.video[0].title);
-                id = response.video[0].id;
-                title = response.video[0].title;
+                console.log(response.items[0].id.videoId);
+                console.log(response.items[0].snippet.title);
+                console.log(response);
+                debugger;
+                //console.log(response.video[0].title);
+                this.id = response.items[0].id.videoId;
+                //this.title = response.video[0].title;ß
+                addVideoToDom(this.id);
 
 
             },
@@ -33,54 +39,18 @@ function Video(searchString) {
         });
     };
 
-    this.loadPlayer = function() {
-        // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
 
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    function addVideoToDom(videoId) {
 
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '270',
-                width: '480',
-                videoId: this.id,
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
+        var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
 
-        // 4. The API will call this function when the video player is ready.
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
+        var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
+        iframe.attr('src', url);
 
-        // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        var done = false;
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && !done) {
-                setTimeout(stopVideo, 6000);
-                done = true;
-            }
-        }
-        function stopVideo() {
-            player.stopVideo();
-        }
-    };
+        $('#player').append(iframe);
 
 
-    this.loadPlayer();
-
-
-
+    }
 
 };
 
