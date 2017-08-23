@@ -22,7 +22,7 @@ function Video() {
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
-            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=national+geographic:+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
+            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=the+country+of+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
             //'https://s-apis.learßningfuze.com/hackathon/youtube/search.php',
             method: 'get',
             data: {
