@@ -3,23 +3,18 @@
  * @constructor
  */
 function Manager() {
-
-    this.defaultCountryCode = "US";
     this.currentCountry = null;
     this.videoManager = null;
     this.chartManager = null;
     this.viewManager = null;
 
-
-
     /**
      * method - init the manager, fill all property
      */
-
     this.init = function () {
         
         this.viewManager = new View();
-        this.chartManager = new Chart(this.defaultCountryCode,document.getElementById("regions_div"));
+        this.chartManager = new Chart(document.getElementById("regions_div"));
         this.videoManager = new Video();
         //apply event handler
         $("#expand-btn").on("click", this.chartManager.showWholeWorld);
@@ -29,20 +24,7 @@ function Manager() {
         this.viewManager.displayVideo();
         this.viewManager.displayCountryData();
         this.viewManager.displayChart();
-        
     }
-
-    /**
-     * method - show video, call function inside view manager
-     */
-
-    /**
-     * method - show Chart, call function inside view manager
-     */
-
-    /**
-     * method - show data, call function inside view manager
-     */
 
     /**
      * method - set current country data
