@@ -5,31 +5,17 @@
 function Manager() {
 
     this.defaultCountryCode = "US";
-
-    /**
-     * property - hold current select country data
-     */
     this.currentCountry = null;
-
-    /**
-     * property - hold the youtube video manager
-     */
     this.videoManager = null;
-
-    /**
-     * property - hold the geoCharts manager
-     */
     this.chartManager = null;
-
-    /**
-     * property - hold the view manager
-     */
     this.viewManager = null;
+
 
 
     /**
      * method - init the manager, fill all property
      */
+
     this.init = function () {
         this.setCurrentCountry(this.defaultCountryCode);
         this.chartManager = new Chart(this.defaultCountryCode,document.getElementById("regions_div"));
