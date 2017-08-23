@@ -19,6 +19,7 @@ function View(){
     }
 
     this.displayVideo = function(){
+        console.log("display video");
         manager.videoManager.startVideo(manager.currentCountry.name);
     }
 }
