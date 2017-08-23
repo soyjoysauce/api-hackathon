@@ -29,6 +29,7 @@ function Manager() {
         this.viewManager.displayVideo();
         this.viewManager.displayCountryData();
         this.viewManager.displayChart();
+        
     }
 
     /**
