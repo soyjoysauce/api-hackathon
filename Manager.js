@@ -2,44 +2,57 @@
  * Handle all things, because it's manager!
  * @constructor
  */
-// function Manager(){
-/**
- * property - hold current select country data
- */
+function Manager() {
 
-/**
- * property - hold the youtube video manager
- */
+    this.defaultCountryCode = "US";
 
-/**
- * property - hold the geoCharts manager
- */
+    /**
+     * property - hold current select country data
+     */
+    this.currentCountry = null;
 
-/**
- * property - hold the view manager
- */
-//this is where Soy works on handing the view manager
-    //triggered by: manager
-    //input: youtube api/GoogleMap-geo chart api/ Data(restcountries)api
-    //output: layout of info_page.html
-    // function viewManager(){
-    //
-    // }
+    /**
+     * property - hold the youtube video manager
+     */
+    this.videoManager = null;
 
-/**
- * method - init the manager, fill all property
- */
+    /**
+     * property - hold the geoCharts manager
+     */
+    this.chartManager = null;
 
-/**
- * method - show video, call function inside view manager
- */
+    /**
+     * property - hold the view manager
+     */
+    this.viewManager = null;
 
-/**
- * method - show Chart, call function inside view manager
- */
+    /**
+     * method - init the manager, fill all property
+     */
+    this.init = function () {
+        this.setCurrentCountry(this.defaultCountryCode);
+        this.chartManager = new Chart(this.defaultCountryCode);
+    }
 
-/**
- * method - show data, call function inside view manager
- */
+    /**
+     * method - show video, call function inside view manager
+     */
 
-// }
+    /**
+     * method - show Chart, call function inside view manager
+     */
+
+    /**
+     * method - show data, call function inside view manager
+     */
+
+    /**
+     * method - set current country data
+     * @param countryCode ISO-3166 format
+     */
+    this.setCurrentCountry = function (countryCode) {
+        this.currentCountry = new Country(countryCode);
+    }
+
+    this.init();
+}
