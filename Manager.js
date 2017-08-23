@@ -26,8 +26,9 @@ function Manager() {
     }
 
     this.onCountryDataLoaded = function(){
-        this.videoManager.startVideo(this.currentCountry.name);
+        this.viewManager.displayVideo();
         this.viewManager.displayCountryData();
+        this.viewManager.displayChart();
     }
 
     /**

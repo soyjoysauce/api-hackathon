@@ -67,5 +67,3 @@ function Video() {
 
 };
 
-//  var  videoOfCountry = new Video();
-// videoOfCountry.startVideo('ethiopia');
