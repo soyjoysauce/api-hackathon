@@ -2,23 +2,28 @@ function Chart(defaultCountryCode, parentDom){
 
     var dom = null;
     var tableHeader = ["Country"];
-    var tableContent = [];
+    var tableContent = [""];
     this.currentShowArea = "world";
     var previousCountryCode = null;
 
     this.init = function(){
-        tableContent.push(defaultCountryCode);
         dom = parentDom;
     }
 
     this.showMap = function(targetCountry){
+        if(targetCountry === null){
+            refreshChart();
+            return;
+        }
         var targetCode = getAreaCode(targetCountry);
         if(previousCountryCode !== targetCountry.code){
             refreshChart();
+            return;
         }
         if(manager.chartManager.currentShowArea !== targetCode){
             manager.chartManager.currentShowArea = targetCode;
             refreshChart();
+            return;
         }
     }
 
@@ -47,7 +52,8 @@ function Chart(defaultCountryCode, parentDom){
         var chart = new google.visualization.GeoChart(dom);
 
         google.visualization.events.addListener(chart, 'regionClick', function(response) {
-            var code = manager.currentCountry.code;
+            
+            var code = manager.currentCountry !== null ? manager.currentCountry.code : "";
             var targetCode = response.region;
             if(targetCode === code || !isNaN(targetCode)){
                 return;
@@ -60,13 +66,15 @@ function Chart(defaultCountryCode, parentDom){
     }
 
     function setCurrentCountry(countryCode){
-        previousCountryCode = manager.currentCountry.code;
+
+        previousCountryCode = manager.currentCountry !== null ? manager.currentCountry.code : "";
         tableContent = [];
         tableContent.push(countryCode);
         manager.setCurrentCountry(countryCode);
     }
 
     function getAreaCode(targetCountry){
+        
         if(targetCountry.constructor !== Country){
             return "world";
         }
