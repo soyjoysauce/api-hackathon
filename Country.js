@@ -24,6 +24,7 @@ function Country(code){
             success: function(response){
                 console.log("get country data success => ", response);
                 assignData(response);
+                manager.onCountryDataLoaded();
             },
             error: function(response){
                 console.log("get country data error");
@@ -35,6 +36,7 @@ function Country(code){
     function assignData(countryData){
         self.code = countryData.alpha2Code;
         self.name = countryData.name;
+        console.log(self.name);
         self.nativeName = countryData.nativeName;
         self.flag = countryData.flag;
         self.capital = countryData.capital;
