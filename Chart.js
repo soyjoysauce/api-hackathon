@@ -16,12 +16,13 @@ function Chart(defaultCountryCode, parentDom){
             return;
         }
         var targetCode = getAreaCode(targetCountry);
-        if(previousCountryCode !== targetCountry.code){
+        if(manager.chartManager.currentShowArea !== targetCode){
+            manager.chartManager.currentShowArea = targetCode;
             refreshChart();
             return;
         }
-        if(manager.chartManager.currentShowArea !== targetCode){
-            manager.chartManager.currentShowArea = targetCode;
+        if(previousCountryCode !== targetCountry.code){
+            console.log("different");
             refreshChart();
             return;
         }
@@ -55,6 +56,7 @@ function Chart(defaultCountryCode, parentDom){
             
             var code = manager.currentCountry !== null ? manager.currentCountry.code : "";
             var targetCode = response.region;
+            $("#youtubeModal").modal('show');
             if(targetCode === code || !isNaN(targetCode)){
                 return;
             }else {
@@ -66,7 +68,6 @@ function Chart(defaultCountryCode, parentDom){
     }
 
     function setCurrentCountry(countryCode){
-
         previousCountryCode = manager.currentCountry !== null ? manager.currentCountry.code : "";
         tableContent = [];
         tableContent.push(countryCode);
