@@ -2,9 +2,18 @@
  *
  * @param searchString
  * @constructor
+ *
+ * instantiate Video object and
+ * pass the country as a string to startVideo() method;
  */
+// example: var  videoOfCountry = new Video();
+// example: videoOfCountry.startVideo('china');
 
-
+/**
+ * obtain video from getVideo function
+ * display the video with startVideo
+ *
+ */
 function Video() {
 
     this.id = '';
@@ -58,5 +67,3 @@ function Video() {
 };
 
 
-var  videoOfCountry = new Video();
-videoOfCountry.startVideo('russia');
