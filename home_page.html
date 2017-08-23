@@ -11,9 +11,9 @@
 <script src="Chart.js"></script>
 <script src="Country.js"></script>
 <script src="View.js"></script>
-<script src="video_support.js"></script>
-<script src="main.js"></script>
 
+<script src="main.js"></script>
+    <script src="video_support.js"></script>
 
 
 <script>
@@ -185,10 +185,20 @@ function displayVideoAndMap() {
                                     <table class="table table-bordered county_data">
                                         <thead>
                                         <tr>
+                                            <th class="col-lg-2">Flag</th>
+                                            <td class=" col-lg-10 country_flag"></td>
+                                        </tr>
+                                        <tr>
                                             <th class="col-lg-2">Name</th>
                                             <td class=" col-lg-4 country_name"></td>
                                             <th class="col-lg-2">Capital</th>
                                             <td class="col-log-4 country_capital"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-lg-2">Native Name</th>
+                                            <td class="col-lg-4 country_nativeName"></td>
+                                            <th class="col-lg-2">Area</th>
+                                            <td class="col-lg-4 country_area"></td>
                                         </tr>
                                         <tr>
                                             <th class="col-lg-2">Population</th>
@@ -196,6 +206,13 @@ function displayVideoAndMap() {
                                             <th class="col-lg-2">Currency</th>
                                             <td class="col-lg-4 country_currency"></td>
                                         </tr>
+                                        <tr>
+                                            <th class="col-lg-2">Languages</th>
+                                            <td class="col-lg-4 country_languages"></td>
+                                            <th class="col-lg-2">Region</th>
+                                            <td class="col-lg-4 country_region"></td>
+                                        </tr>
+                                        
                                         </thead>
                                     </table>
                                 </div>
@@ -203,9 +220,11 @@ function displayVideoAndMap() {
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
             </div>
         </div>
 
