@@ -63,6 +63,7 @@ function Video() {
         iframe.attr('src', url).css({"margin-top": "20px", "margin-left": "5px"});
 
         $("#player").append(iframe);
+        $("#youtubeModal").modal('show');
     }
 
 
