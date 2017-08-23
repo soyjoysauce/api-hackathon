@@ -1,6 +1,8 @@
 
 
-function Chart(defaultCountryCode){
+function Chart(defaultCountryCode, parentDom){
+
+    var dom = null;
 
     var dataTableHeader = ["Country"];
     var dataTableContent = [];
@@ -9,20 +11,18 @@ function Chart(defaultCountryCode){
 
     this.init = function(){
         dataTableContent.push(defaultCountryCode);
-        createDom();
+        console.log("parent dom = ", parentDom);
+        dom = parentDom;
         refreshChart();
     }
 
     function refreshChart(){
+        $(dom).empty();
         google.charts.load('current', {
             'packages':['geochart'],
             'mapsApiKey': 'AIzaSyAdw9GV5ddOTsXhUeLbQiQ0N_vJwMZ9HGw'
         });
         google.charts.setOnLoadCallback(drawRegionsMap);
-    }
-
-    function deleteChart(){
-        $("#regions_div").empty();
     }
 
     function drawRegionsMap() {
@@ -33,14 +33,13 @@ function Chart(defaultCountryCode){
         var data = google.visualization.arrayToDataTable(dataTableArray);
         var options = {
         };
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        var chart = new google.visualization.GeoChart(dom);
 
         google.visualization.events.addListener(chart, 'regionClick', function(response) {
             console.log(response.region);
             setCurrentRegion(response.region);
             console.log(manager);
             manager.setCurrentCountry(response.region);
-            deleteChart();
             refreshChart();
           });
 
@@ -50,14 +49,6 @@ function Chart(defaultCountryCode){
     function setCurrentRegion(region){
         dataTableContent = [];
         dataTableContent.push(region)
-    }
-
-    function createDom(){
-        $("body").append(
-        $("<div>",{
-            id: "regions_div",
-            style: "width: 900px; height: 500px;"
-        }));
     }
 
     this.init();

@@ -32,7 +32,7 @@ function Manager() {
      */
     this.init = function () {
         this.setCurrentCountry(this.defaultCountryCode);
-        this.chartManager = new Chart(this.defaultCountryCode);
+        this.chartManager = new Chart(this.defaultCountryCode,document.getElementById("regions_div"));
     }
 
     /**

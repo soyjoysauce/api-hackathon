@@ -8,15 +8,39 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="Manager.js"></script>
+<script src="Chart.js"></script>
+<script src="Country.js"></script>
 <script src="main.js"></script>
+
+<script>
+$(document).ready(function(){
+    console.log("ready");
+    console.log($(".btn-lg"));
+    $(".btn-lg").on("click",displayVideoAndMap);
+});
+
+
+function displayVideoAndMap() {
+    var buttonclicked = true;
+    //if the button clicked is true reveal the country api container and transform regions div
+    if(buttonclicked === true){
+        $("#country_api_container").removeClass("hide");
+        $("#regions_div").removeClass("regions_div");
+        $("#regions_div").addClass("transformed_div");
+        $("#info_button").remove();
+        $("#regions_div").append('<button type="button" class="btn btn-default btn-lg"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>Fullscreen</button>');
+
+    }
+}
+    </script>
     <style>
         header{
             width: 100vw;
-            /*height: 10vw;*/
+            height: 100px;
             border: 1px solid;
             text-align: center;
             font-size: 50px;
-            padding-top: 50px;
             font-family: Arial, sans-serif;
             background-color: #3f7f7f;
         }
@@ -35,14 +59,16 @@
             padding: 70px 0;
         }
 
-        .geoChartContainer {
+        .info_container {
             width: 100vw;
             height: 803px;
             border: 3px solid green;
             text-align: center;
+            display: inline-block;
         }
 
-        #regions_div{
+        /*before the click the map is centered*/
+        .regions_div{
             width: 900px;
             height: 500px;
             border: 1px solid;
@@ -50,17 +76,87 @@
             transform: translate(0%, 25%);
             display: inline-block;
             background-color: #f8f8f8;
+            float: none;
+        }
+
+        #country_api_container {
+            float: right;
+            width: 700px;
+        }
+
+        .youtube_api_container{
+            width:700px ;
+            height: 405px;
+            border:1px solid;
+            display: inline-block;
+            float: right;
+            background-color: red;
+        }
+
+        .data_api_container {
+            float: right;
+            width:700px ;
+            height: 300px;
+        }
+
+        .transformed_div {
+            /*transition-property:width 400px, height 300px ;*/
+            transform: translate(-8%, 0%);
+            width: 500px;
+            height: 500px;
+            display: inline-block;
+            float:left;
+        }
+        .btn-lg {
+
+        }
+
+        .hide {
+            visibility: hidden;
         }
 
     </style>
 </head>
 <body>
 <div class="container-fluid website_container">
-<header>Kid Maps - A Interactive Media Education Tool for Kids</header>
-    <div class="geoChartContainer">
-        <div id="regions_div"></div>
+    <header>Kid Maps - A Interactive Media Education Tool for Kids</header>
+    <!--geochart-->
+    <div class="container info_container">
+            <div id="regions_div" class="regions_div"></div>
+        <button type="button" id="info_button" class="btn btn-info btn-lg">Info</button>
+
+        <div id="country_api_container" class="hide">
+            <!--youtube-->
+            <div class="youtube_api_container">
+                <div id="player">
+                    <iframe id="ytplayer" type="text/html" width="720" height="405"
+                            src="https://www.youtube.com/embed/M7lc1UVf-VE"
+                            frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+                <!--this contains country's data and charts-->
+                <div class="data_api_container">
+                    <table class="table table-bordered county_data">
+                        <thead>
+                        <tr>
+                            <th class="col-lg-2">Name</th>
+                            <td class=" col-lg-4 country_name"></td>
+                            <th class="col-lg-2">Capital</th>
+                            <td class="col-log-4 country_capital"></td>
+                        </tr>
+                        <tr>
+                            <th class="col-lg-2">Population</th>
+                            <td class="col-lg-4 country_population"></td>
+                            <th class="col-lg-2">Currency</th>
+                            <td class="col-lg-4 country_currency"></td>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<p>This is a mockup font</p>
+<p>This is a mock-up font</p>
 </body>
 </html>
