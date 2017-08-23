@@ -52,14 +52,20 @@ function Video() {
 
     function addVideoToDom(videoId) {
 
+
+        $('#player').append(iframe);
+
         var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
 
         iframe.attr('src', url);
 
+
+
     }
 
-};
 
+
+};
 
