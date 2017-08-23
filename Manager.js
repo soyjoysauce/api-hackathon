@@ -2,7 +2,7 @@
  * Handle all things, because it's manager!
  * @constructor
  */
-function Manager(){
+function Manager() {
 
     this.defaultCountryCode = "US";
 
@@ -29,7 +29,7 @@ function Manager(){
     /**
      * method - init the manager, fill all property
      */
-    this.init = function(){
+    this.init = function () {
         this.setCurrentCountry(this.defaultCountryCode);
         this.chartManager = new Chart(this.defaultCountryCode);
     }
@@ -48,9 +48,9 @@ function Manager(){
 
     /**
      * method - set current country data
-     * @param countryCode ISO-3166 format 
+     * @param countryCode ISO-3166 format
      */
-    this.setCurrentCountry = function(countryCode){
+    this.setCurrentCountry = function (countryCode) {
         this.currentCountry = new Country(countryCode);
     }
 
