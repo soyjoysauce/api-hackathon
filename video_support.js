@@ -58,12 +58,8 @@ function Video() {
 
         iframe.attr('src', url);
 
-        $('#player').append(iframe);
-
-
     }
 
 };
 
- var  videoOfCountry = new Video();
-videoOfCountry.startVideo('algeria');
+
