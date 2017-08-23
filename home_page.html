@@ -29,7 +29,7 @@ function displayVideoAndMap() {
         $("#regions_div").removeClass("regions_div");
         $("#regions_div").addClass("transformed_div");
         $("#info_button").remove();
-        $("#regions_div").append('<button type="button" class="btn btn-default btn-lg"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>Fullscreen</button>');
+        $("#map_button_container").append('<button type="button" class="btn btn-default btn-lg"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>Fullscreen</button>');
 
     }
 }
@@ -93,6 +93,11 @@ function displayVideoAndMap() {
             background-color: red;
         }
 
+        #map_button_container{
+            display: inline-block;
+            /*float: left;*/
+        }
+
         .data_api_container {
             float: right;
             width:700px ;
@@ -100,12 +105,13 @@ function displayVideoAndMap() {
         }
 
         .transformed_div {
+            transform: translate(-1%, 0%);
+            /*width: 100vw;*/
+            /*height: 500px;*/
+            /*display: inline-block;*/
+            /*float:left;*/
             /*transition-property:width 400px, height 300px ;*/
-            transform: translate(-8%, 0%);
-            width: 500px;
-            height: 500px;
-            display: inline-block;
-            float:left;
+
         }
         .btn-lg {
 
@@ -122,9 +128,10 @@ function displayVideoAndMap() {
     <header>Kid Maps - A Interactive Media Education Tool for Kids</header>
     <!--geochart-->
     <div class="container info_container">
-            <div id="regions_div" class="regions_div"></div>
-        <button type="button" id="info_button" class="btn btn-info btn-lg">Info</button>
-
+            <div id="map_button_container">
+                <div id="regions_div" class="regions_div"></div>
+                <button type="button" id="info_button" class="btn btn-info btn-lg">Info</button>
+            </div>
         <div id="country_api_container" class="hide">
             <!--youtube-->
             <div class="youtube_api_container">
