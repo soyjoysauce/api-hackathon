@@ -61,6 +61,7 @@ function Video() {
         iframe.attr('src', url);
 
         $("#player").append(iframe);
+        $("#youtubeModal").modal('show');
     }
 
 };
