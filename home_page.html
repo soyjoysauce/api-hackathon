@@ -12,12 +12,13 @@
 <script src="Chart.js"></script>
 <script src="Country.js"></script>
 <script src="main.js"></script>
+    <script src="video_support.js"></script>
 
 <script>
 $(document).ready(function(){
     console.log("ready");
     console.log($(".btn-lg"));
-    $(".btn-lg").on("click",displayVideoAndMap);
+    $("#info_button").on("click",displayVideoAndMap);
 });
 
 
@@ -136,9 +137,7 @@ function displayVideoAndMap() {
             <!--youtube-->
             <div class="youtube_api_container">
                 <div id="player">
-                    <iframe id="ytplayer" type="text/html" width="720" height="405"
-                            src="https://www.youtube.com/embed/M7lc1UVf-VE"
-                            frameborder="0" allowfullscreen></iframe>
+
                 </div>
             </div>
                 <!--this contains country's data and charts-->
