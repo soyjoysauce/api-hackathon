@@ -61,7 +61,7 @@ function Video() {
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
 
-        iframe.attr('src', url);
+        iframe.attr('src', url).css({"margin-top": "20px", "margin-left": "5px"});
 
         $("#player").append(iframe);
     }
