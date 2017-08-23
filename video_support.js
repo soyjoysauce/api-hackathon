@@ -19,19 +19,6 @@ function Video() {
     this.id = '';
     this.title = '';
 
-    this.addVideoToDom = function(videoId){
-
-        var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">');
-
-        var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
-
-        iframe.attr('src', url);
-
-        $('#player').append(iframe);
-
-
-    };
-
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
@@ -52,7 +39,7 @@ function Video() {
                 //this.title = response.video[0].title;ß
 
 
-               this.addVideoToDom(this.id);
+               addVideoToDom(this.id);
 
 
             },
@@ -63,9 +50,9 @@ function Video() {
     };
 
 
-<<<<<<< HEAD
 
-=======
+
+
     function addVideoToDom(videoId) {
 
         $("#player").empty();
@@ -78,7 +65,7 @@ function Video() {
 
         $("#player").append(iframe);
     }
->>>>>>> 75522d9dbc9f5b943dead7d40c3ca6dbf55c7e22
+
 
 };
 
