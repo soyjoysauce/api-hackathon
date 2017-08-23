@@ -13,6 +13,12 @@ function View(){
         console.log("parentDom = ",parentDom);
         parentDom.html(content);
     }
-    
 
+    this.displayChart = function(){
+        manager.chartManager.showMap(manager.currentCountry);
+    }
+
+    this.displayVideo = function(){
+        manager.videoManager.startVideo(manager.currentCountry.name);
+    }
 }
