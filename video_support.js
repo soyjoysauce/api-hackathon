@@ -50,17 +50,20 @@ function Video() {
     };
 
 
-
+    /**
+     * dynamically populate the #player div with the helper function addVideoToDom
+     * @param videoId
+     */
 
 
     function addVideoToDom(videoId) {
-
+//every time the function is called the div need to be empty for the next video
         $("#player").empty();
         var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
 
-        iframe.attr('src', url).css({"margin-top": "20px", "margin-left": "5px"});
+        iframe.attr('src', url);
 
         $("#player").append(iframe);
 
