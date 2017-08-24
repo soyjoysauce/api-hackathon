@@ -17,31 +17,24 @@
 function Video() {
 
     this.id = '';
-    this.title = '';
-
+//search data ajax get
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
-            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=the+country+of+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
-            //'https://s-apis.learßningfuze.com/hackathon/youtube/search.php',
+            url: 'https://www.googleapis.com/youtube/v3/search',
             method: 'get',
             data: {
+                key: 'AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
+                q: 'the+country+of+' + videoToSearch,
+                part: 'snippet',
+                type: 'video',
+                videoCaption: 'closedCaption',
                 maxResults: 1
             },
 
-
             success: function (response) {
-                console.log(response.items[0].id.videoId);
-                console.log(response.items[0].snippet.title);
-
-                //console.log(response.video[0].title);
                 this.id = response.items[0].id.videoId;
-                //this.title = response.video[0].title;ß
-
-
-               addVideoToDom(this.id);
-
-
+                addVideoToDom(this.id);
             },
             error: function(response){
                 console.log('error');
