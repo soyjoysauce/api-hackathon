@@ -48,7 +48,10 @@ function Chart(parentDom){
         tableArray.push(tableContent);
         var data = google.visualization.arrayToDataTable(tableArray);
         var options = {
-            region: manager.chartManager.currentShowArea
+            region: manager.chartManager.currentShowArea,
+            "backgroundColor" : "#04235b",
+            "datalessRegionColor": "#bec9db",
+            "defaultColor": "#00FFB6"
         };
         var chart = new google.visualization.GeoChart(dom);
 
