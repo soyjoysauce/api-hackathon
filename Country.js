@@ -17,6 +17,7 @@ function Country(code){
     this.currencies = [];
 
     this.getData = function(code){
+        
         var option = {
             url: ("https://restcountries.eu/rest/v2/alpha/"+ code),
             method: "get",
@@ -25,6 +26,16 @@ function Country(code){
                 console.log("get country data success => ", response);
                 assignData(response);
                 manager.onCountryDataLoaded();
+                if(response.name === manager.chartManager.currentQuizCountryName){
+                    manager.chartManager.currentQuizScore += 1;
+                    $("#quiz_score_data_box").html(manager.chartManager.currentQuizScore);
+                    if(manager.chartManager.currentQuizScore >= 5){
+                        manager.chartManager.win = true;
+                    }
+                }
+                console.log("response name = ", response.name);
+                console.log(manager.chartManager.currentQuizCountryName);
+                console.log("quiz score = ",$("#quiz_score_data_box").html());
             },
             error: function(response){
                 console.log("get country data error");

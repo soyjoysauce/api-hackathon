@@ -1,4 +1,7 @@
+
+/* Created by Carlos Blandino Aug 24, 2017*/
 /**
+ *
  *
  * @param searchString
  * @constructor
@@ -17,50 +20,45 @@
 function Video() {
 
     this.id = '';
-    this.title = '';
-
+//search data ajax get
     this.startVideo = function(videoToSearch){
         $.ajax({
             dataType: 'json',
-            url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=the+country+of+' + videoToSearch +'&type=video&maxResult=1&videoCaption=closedCaption&key=AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
-            //'https://s-apis.learßningfuze.com/hackathon/youtube/search.php',
+            url: 'https://www.googleapis.com/youtube/v3/search',
             method: 'get',
             data: {
+                key: 'AIzaSyDFDtGVH2VJlim-M-B5xW--zNKmSpgAthw',
+                q: 'the+country+of+' + videoToSearch,
+                part: 'snippet',
+                type: 'video',
+                videoCaption: 'closedCaption',
                 maxResults: 1
             },
 
-
             success: function (response) {
-                console.log(response.items[0].id.videoId);
-                console.log(response.items[0].snippet.title);
-
-                //console.log(response.video[0].title);
                 this.id = response.items[0].id.videoId;
-                //this.title = response.video[0].title;ß
-
-
-               addVideoToDom(this.id);
-
-
-            },
-            error: function(response){
-                console.log('error');
+                addVideoToDom(this.id);
             }
+
         });
     };
 
 
-
+    /**
+     * dynamically populate the #player div with the helper function addVideoToDom and passing a string
+     * @param videoId
+     */
 
 
     function addVideoToDom(videoId) {
-
+//every time the function is called the div need to be empty for the next video
         $("#player").empty();
+
         var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
 
-        iframe.attr('src', url).css({"margin-top": "20px", "margin-left": "5px"});
+        iframe.attr('src', url);
 
         $("#player").append(iframe);
 
