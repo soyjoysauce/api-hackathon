@@ -1,9 +1,10 @@
 
 function View(){
+    
 
     this.displayCountryData = function(){
         var data = manager.currentCountry;
-        //flag
+        //flag 
         console.log("data flag",data.flag);
         displayContent("<img src='"+ data.flag +"' style='width:240px; height:160px;'/>", $(".country_flag"));
         displayContent(data.name,$(".country_name"));

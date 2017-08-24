@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hackathon2</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="Manager.js"></script>
+<script src="Chart.js"></script>
+<script src="Country.js"></script>
+<script src="View.js"></script>
+<script src="main.js"></script>
+<script src="video_support.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/b9e47fdb0e.js"></script>
+    <style>
+        path {
+        stroke-width:1; /* control the countries borders width */
+        stroke: #525760; /* choose a color for the border */
+        }
+        @font-face {
+            font-family: lcdphone;
+            src: url(img/LCDPHONE.TTF);
+
+        }
+        .pseudo_header{
+            text-align: center;
+            background-color: black;
+            background-image: url("img/banner.png");
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size:cover;
+            width: 100%;
+            float: left;
+            
+        }
+
+        .title_container{
+            width: 100%; 
+            position: relative;
+            animation: mymove 10s;
+            display: inline-block; 
+        }
+
+        .title {
+            font-size: 50px;
+            font-family: lcdphone, Arial, sans-serif;
+            color: #00FFB6;
+            text-shadow: 3px 3px black;
+        }
+
+        @keyframes mymove {
+            0%   {top: -400px;}
+            25%  {top: -200px;}
+            75%  {top: 25px}
+            100% {top: 0px;}
+        }
+
+        body{
+            background-color: black; 
+            height:100vh;
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size:100vw 100vh;
+        }
+
+        .website_container{
+            width:100%;
+            text-align: center;
+        }
+
+        .website_container > row{
+            justify-content: center;
+        }
+
+        .info_container {
+            width: 100%;
+            text-align: center;
+            display: inline-block;
+            float: left;
+            background-color: #000;
+        }
+
+        .regions_div{
+            width: 100%;
+            height: 440px;
+            text-align: center; 
+            background-color: black; 
+            border: 5px dashed #00FFB6;
+            margin-bottom: 20px;
+            padding: 0px;
+           
+        }
+
+        #map_container_section{
+            float: left;
+            width: 100%;
+        }
+
+        .map_main_box {
+            padding: 0px;
+        }
+        
+        .map_modalbox{
+            display: none;
+        }
+         #map_container_section.quiz_active .map_modalbox {
+            display: block;
+        }
+        #map_container_section:not(.quiz_active) .map_main_box{
+            float: none!important;
+            
+        }
+        .map_modalbox .panel-heading{
+            font-weight: bold;
+        }
+        
+        .map_modalbox .panel-body{
+            height: 400px;
+            position: relative;
+        }
+
+         #map_button_section{
+            width: 100%;
+            float: left;
+            margin-bottom: 20px;
+        }
+
+        .data_api_container {
+            width: 100%;
+            height: min-content;
+            background-color: #F26A68;
+        }
+
+        #youtubeModal > .modal-dialog{
+            width: min-content;
+            font-family: lcdphone,Arial,sans-serif;
+            color: #00C990;
+        }
+
+        .modal-content{
+            background-color: rgba(0,1,5,1);
+            margin:5px;
+        }
+
+        .panel-title{
+            background-color: #FFDF60;
+        }
+
+        .btn-warning {
+            color:black;
+            text-align: center;
+            transform: translate(-50%,20%);
+        }
+        
+        .quiz-score-box{
+            font-size: 50px;
+            color: #000000;
+            font-weight: bold;
+        }
+        .country-display-box{ 
+                font-size: 30px;
+                color: #000000;
+                font-weight: bold;
+        }
+        
+        .quiz_timecounter_box{
+                position: absolute;
+                bottom: 20px;
+                right: 15px;
+                left: 15px;
+        }
+        .quiz_timecounter_box .time_text{
+                font-weight: bold;
+                margin-bottom: 5px;
+                font-size: 16px;
+        }
+        .quiz_timecounter_box .time_progress_box{
+                display: block;
+                position: relative;
+                height: 15px;
+                width: 100%;
+                border: 1px solid rgb(51, 51, 51);
+                border-radius: 20px;
+                -moz-border-radius: 20px;
+                -ms-border-radius: 20px;
+                -o-border-radius: 20px;
+                -webkit-border-radius: 20px;
+                overflow: hidden;
+        }
+        .quiz_timecounter_box .time_progress_box span{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            background: #333;
+            border: 1px solid #333;
+            bottom: 0px;
+        }
+
+        footer#footer {
+            width: 100%;
+            background-color: #119874;
+            float: left;
+            color: #fff;
+            padding: 10px;
+            text-align: center ;
+            height: 200px
+
+        }
+        
+        footer#footer .footer_social{
+            list-style-type: none;
+            margin: 0px auto;
+            display: inline-block;
+            padding: 0px;
+        }
+        footer#footer .footer_social li {
+            float: left;
+        }
+
+        footer#footer .footer_social li a{
+            color: #eee;
+            float: left;
+            width: 40px;
+            font-size: 20px;
+
+        }
+
+        footer#footer .footer_social li a:hover{
+            font-family: lcdphone, arial,sans-serif;
+            color: #fff;
+        }
+
+        .panel-collapse{
+            background-color: black;
+        }
+
+        /*soy edit here*/
+        .quiz-score-container{
+            background-color: black;
+            color: #00FFB6;
+            outline: 1px solid #00FFB6;
+        }
+
+        #game_start , #expand-btn {
+            font-family: lcdphone,Arial,sans-serif;
+            color: black;
+            border-radius: 25px;
+        }
+
+        p.special-thanks ,div.panel-heading.quiz-score-container,div.time_text, #quiz_data_box , #quiz_score_data_box {
+            font-family: lcdphone, arial,sans-serif;
+        }
+
+    </style>
+</head>
+<body background="img/green_vector_globe.png">
+    <div class="align-items-start website_container">
+            <div class="pseudo_header">
+                <div class="title_container">
+                    <p class="title">geo maps</p>
+                    <p class="title">world discovery</p>
+                </div>
+            </div>
+        <!-- end header -->
+        <!--geochart  -->
+        <div class="info_container">
+            <div id="map_container_section">
+                <div class="map_modalbox col-sm-3 col-xs-12">
+                     <div class=" quiz-score-container panel panel-default">
+                        <!--quiz score modal-->
+                        <div class="quiz-score-container panel-heading">Quiz Score</div>
+                        <div class="panel-body">
+                                <div id="quiz_score_data_box" class="quiz-score-box quiz-score-container ">0</div>
+                        </div>
+                     </div>
+                </div>
+                <!-- end quiz score modal part -->
+                <div class="col-sm-6 col-xs-12 map_main_box center-block"><div id="regions_div" class="regions_div"></div></div>
+                <div class="map_modalbox col-sm-3 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading quiz-score-container">Quiz</div>
+                        <div class="panel-body quiz-score-container ">
+                         <div id="quiz_data_box" class="country-display-box quiz-score-container ">India</div>
+                             <div class="quiz_timecounter_box quiz-score-container ">
+                                    <div class="time_text">Remaining Time <br /><b id="remaining_quiz_time">60</b> Sec</div>
+                                    <div class="time_progress_box progress-bar-success progress-bar-striped"><span class="progress_data " id="quiz_progress_length"></span></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end quiz  modal part -->
+                  <div id="map_button_section">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="col-sm-6 col-xs-12">  <button type="button" class=" btn btn-success btn-lg btn-block" id="expand-btn"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> World View </button></div>
+                       <div class="col-sm-6 col-xs-12"> <button id="game_start" class=" btn btn-primary btn-lg btn-block">Geo Quiz <i class="fa fa-globe" aria-hidden="true"></i></button></div>
+                     </div>
+                  </div>
+        </div>
+            <footer id="footer">
+                <p class="special-thanks">special thanks to:</p>
+                <ul class="footer_social">
+                        <li><a href=""><i class="fa fa-github-alt" aria-hidden="true"></i></a></li>
+                         <li><a href=""><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                         <li><a href=""><i class="fa fa-youtube-square" aria-hidden="true"></i></a></li>
+                         <li><a href=""><i class="fa fa-coffee" aria-hidden="true"></i></a></li>
+                </ul>
+            </footer>
+    </div>
+    <!--start of youtube modal-->
+    <div class="modal fade" id="youtubeModal" role="dialog">
+        <div class="modal-dialog ">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title country_name">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                        <div id="player"></div>
+                    <div class="data_api_container">
+                        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"></a>
+                                        Country Information
+                                    </h4>
+                                </div>
+                                <div id="collapsgoiOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <!--insert text here-->
+                                        <table class="table table-bordered county_data">
+                                            <thead>
+                                            <tr>
+                                                <th class="col-lg-2">Flag</th>
+                                                <td class=" col-lg-6 country_flag"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-lg-2">Name</th>
+                                                <td class=" col-lg-4 country_name"></td>
+                                                <th class="col-lg-2">Capital</th>
+                                                <td class="col-log-4 country_capital"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-lg-2">Native Name</th>
+                                                <td class="col-lg-4 country_nativeName"></td>
+                                                <th class="col-lg-2">Area</th>
+                                                <td class="col-lg-4 country_area"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-lg-2">Population</th>
+                                                <td class="col-lg-4 country_population"></td>
+                                                <th class="col-lg-2">Currency</th>
+                                                <td class="col-lg-4 country_currency"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-lg-2">Languages</th>
+                                                <td class="col-lg-4 country_languages"></td>
+                                                <th class="col-lg-2">Region</th>
+                                                <td class="col-lg-4 country_region"></td>
+                                            </tr>
+
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
