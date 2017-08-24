@@ -3,6 +3,8 @@
  * @constructor
  */
 function Manager() {
+
+      
     this.currentCountry = null;
     this.videoManager = null;
     this.chartManager = null;
@@ -21,6 +23,7 @@ function Manager() {
     }
 
     this.onCountryDataLoaded = function(){
+              
         this.viewManager.displayVideo();
         this.viewManager.displayCountryData();
         this.viewManager.displayChart();
