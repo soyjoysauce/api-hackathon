@@ -13,29 +13,31 @@
 <script src="View.js"></script>
 <script src="main.js"></script>
 <script src="video_support.js"></script>
-
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/b9e47fdb0e.js"></script>
     <style>
         @font-face {
             font-family: lcdphone;
             src: url(img/LCDPHONE.TTF);
         }
-
-        header{
-            width: 100vw;
-            height: 200px;
+        .pseudo_header{
             text-align: center;
             background-color: black;
             background-image: url("img/banner.png");
             background-repeat:no-repeat;
             background-position: center;
-            background-size:90vw 200px;
+            background-size:cover;
+            width: 100vw;
+            height: 200px;
         }
 
         .title_container{
             width: 100vw;
             height: 200px;
             position: relative;
-            animation: mymove 5s infinite;
+            animation: mymove 10s;
+            display: inline-block;
+            padding-top: 40px;
         }
 
         .title {
@@ -46,10 +48,10 @@
         }
 
         @keyframes mymove {
-            0%   {top: 0px;}
-            25%  {top: 200px;}
-            75%  {top: 50px}
-            100% {top: 100px;}
+            0%   {top: -400px;}
+            25%  {top: -200px;}
+            75%  {top: 25px}
+            100% {top: 0px;}
         }
 
         body{
@@ -59,12 +61,15 @@
             background-repeat:no-repeat;
             background-position: center;
             background-size:100vw 100vh;
+            margin-right: 15px;
+            margin-left:15px;
         }
 
         .website_container{
             height:1000px;
             width:100vw;
             text-align: center;
+
         }
 
         .website_container > row{
@@ -73,7 +78,6 @@
 
         .info_container {
             width: 100vw;
-            /*height: 100vh;*/
             text-align: center;
             display: inline-block;
         }
@@ -81,12 +85,12 @@
         .regions_div{
             width: 900px;
             height: 500px;
-            border: 1px solid;
             text-align: center;
             display: inline-block;
             background-color: black;
             float: none;
             border: 5px dashed #00FFB6;
+            margin: 5px;
         }
 
         #map_button_container{
@@ -95,7 +99,6 @@
         }
 
         .data_api_container {
-            float: right;
             width: 100%;
             height: min-content;
             background-color: #F26A68;
@@ -112,6 +115,10 @@
             margin:5px;
         }
 
+        .panel-title{
+            background-color: #FFDF60;
+        }
+
         .btn-warning {
             text-align: center;
             transform: translate(-50%,20%);
@@ -122,25 +129,31 @@
             height:200px;
             background-color: black;
             margin-top: -295px;
+            margin-left: -15px;
         }
 
         .panel-collapse{
             background-color: black;
         }
 
-        button > .x-button{
-            /*color:white;*/
+        .fa{
+            color: #00C990;
+            margin-right: 150px;
+        }
+
+        .special-thanks{
+            text-align: center;
         }
     </style>
 </head>
 <body background="img/green_vector_globe.png">
 <div class="row align-items-start website_container">
-    <header>
+       <div class="pseudo_header">
         <div class="title_container">
         <p class="title">geo maps</p>
         <p class="title">world discovery</p>
         </div>
-    </header>
+       </div>
     <!--geochart-->
     <div class="col-md-12 info_container">
         <div id="map_button_container" class="col-md-12">
@@ -153,7 +166,13 @@
         </div>
     </div>
 </div>
-<footer></footer>
+<footer>
+    <p class="special-thanks">special thanks to:</p>
+    <i class="fa fa-github-alt fa-4x" aria-hidden="true"></i>
+    <i class="fa fa-google fa-4x" aria-hidden="true"></i>
+    <i class="fa fa-youtube-square fa-4x" aria-hidden="true"></i>
+    <i class="fa fa-coffee fa-4x" aria-hidden="true"></i>
+</footer>
 <div class="modal fade" id="youtubeModal" role="dialog">
     <div class="modal-dialog ">
         <!-- Modal content-->
@@ -165,7 +184,7 @@
             <div class="modal-body">
                 <div id="player">
                 </div>
-                <div class="col-md-12 data_api_container">
+                <div class="data_api_container">
                     <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
@@ -175,7 +194,7 @@
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapsegoiOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div id="collapsgoiOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <!--insert text here-->
                                     <table class="table table-bordered county_data">
