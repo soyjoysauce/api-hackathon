@@ -1,4 +1,7 @@
+
+/* Created by Carlos Blandino Aug 24, 2017*/
 /**
+ *
  *
  * @param searchString
  * @constructor
@@ -35,16 +38,14 @@ function Video() {
             success: function (response) {
                 this.id = response.items[0].id.videoId;
                 addVideoToDom(this.id);
-            },
-            error: function(response){
-                console.log('error');
             }
+
         });
     };
 
 
     /**
-     * dynamically populate the #player div with the helper function addVideoToDom
+     * dynamically populate the #player div with the helper function addVideoToDom and passing a string
      * @param videoId
      */
 
@@ -52,6 +53,7 @@ function Video() {
     function addVideoToDom(videoId) {
 //every time the function is called the div need to be empty for the next video
         $("#player").empty();
+
         var iframe = $('<iframe id="ytplayer" type="text/html" width="640" height="360" frameborder="0">')
 
         var url = 'https://www.youtube.com/embed/'+videoId+'?autoplay=&origin=http:';
