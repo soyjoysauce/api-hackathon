@@ -13,42 +13,71 @@
 <script src="View.js"></script>
 <script src="main.js"></script>
 <script src="video_support.js"></script>
-
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/b9e47fdb0e.js"></script>
     <style>
         @font-face {
             font-family: lcdphone;
             src: url(img/LCDPHONE.TTF);
         }
-
-        header{
-            width: 100vw;
-            height: 150px;
-            border: 1px solid;
+        .pseudo_header{
             text-align: center;
+            background-color: black;
+            background-image: url("img/banner.png");
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size:cover;
+            width: 100vw;
+            height: 200px;
+        }
+
+        .title_container{
+            width: 100vw;
+            height: 200px;
+            position: relative;
+            animation: mymove 10s;
+            display: inline-block;
+            padding-top: 40px;
+        }
+
+        .title {
             font-size: 50px;
-            color: #282827;
             font-family: lcdphone, Arial, sans-serif;
-            background-color: #00C990;
-            border-radius: 25px;
+            color: #00FFB6;
+            text-shadow: 3px 3px black;
+        }
+
+        @keyframes mymove {
+            0%   {top: -400px;}
+            25%  {top: -200px;}
+            75%  {top: 25px}
+            100% {top: 0px;}
         }
 
         body{
-            background-color: #282827;
+            background-color: black;
             width:100vw;
             height:100vh;
             background-repeat:no-repeat;
             background-position: center;
+            background-size:100vw 100vh;
+            margin-right: 15px;
+            margin-left:15px;
         }
 
         .website_container{
             height:1000px;
             width:100vw;
             text-align: center;
+
+        }
+
+        .website_container > row{
+            justify-content: center;
         }
 
         .info_container {
             width: 100vw;
-            height: 100vh;
             text-align: center;
             display: inline-block;
         }
@@ -56,12 +85,12 @@
         .regions_div{
             width: 900px;
             height: 500px;
-            border: 1px solid;
             text-align: center;
             display: inline-block;
-            background-color: #91D2F7;
+            background-color: black;
             float: none;
-            border-radius: 50px;
+            border: 5px dashed #00FFB6;
+            margin: 5px;
         }
 
         #map_button_container{
@@ -70,39 +99,82 @@
         }
 
         .data_api_container {
-            float: right;
             width: 100%;
             height: min-content;
-            background-color: #91D2F7;
+            background-color: #F26A68;
         }
 
         #youtubeModal > .modal-dialog{
             width: min-content;
             font-family: lcdphone,Arial,sans-serif;
+            color: #00C990;
         }
 
+        .modal-content{
+            background-color: rgba(0,1,5,1);
+            margin:5px;
+        }
+
+        .panel-title{
+            background-color: #FFDF60;
+        }
+
+        .btn-warning {
+            text-align: center;
+            transform: translate(-50%,20%);
+        }
+
+        footer {
+            width: 100vw;
+            height:200px;
+            background-color: black;
+            margin-top: -295px;
+            margin-left: -15px;
+        }
+
+        .panel-collapse{
+            background-color: black;
+        }
+
+        .fa{
+            color: #00C990;
+            margin-right: 150px;
+        }
+
+        .special-thanks{
+            text-align: center;
+        }
     </style>
 </head>
-<body background="img/reverse_globe3.png">
+<body background="img/green_vector_globe.png">
 <div class="row align-items-start website_container">
-    <header>
-        <p>geo maps</p>
-        <p>discover world</p>
-    </header>
+       <div class="pseudo_header">
+        <div class="title_container">
+        <p class="title">geo maps</p>
+        <p class="title">world discovery</p>
+        </div>
+       </div>
     <!--geochart-->
     <div class="col-md-12 info_container">
         <div id="map_button_container" class="col-md-12">
             <div id="regions_div" class="regions_div"></div>
             <div class="map_buttons">
                 <button type="button" class=" btn btn-success btn-lg btn-block" id="expand-btn">
-                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>World View
+                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> World View
                 </button>
             </div>
         </div>
     </div>
 </div>
+<footer>
+    <p class="special-thanks">special thanks to:</p>
+    <i class="fa fa-github-alt fa-4x" aria-hidden="true"></i>
+    <i class="fa fa-google fa-4x" aria-hidden="true"></i>
+    <i class="fa fa-youtube-square fa-4x" aria-hidden="true"></i>
+    <i class="fa fa-coffee fa-4x" aria-hidden="true"></i>
+</footer>
 <div class="modal fade" id="youtubeModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog ">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -112,7 +184,7 @@
             <div class="modal-body">
                 <div id="player">
                 </div>
-                <div class="col-md-12 data_api_container">
+                <div class="data_api_container">
                     <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
@@ -122,7 +194,7 @@
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapsegoiOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div id="collapsgoiOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <!--insert text here-->
                                     <table class="table table-bordered county_data">
@@ -167,12 +239,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-
             </div>
         </div>
 
     </div>
 </div>
-<p>This is a mock-up font</p>
 </body>
 </html>
